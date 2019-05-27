@@ -1,9 +1,9 @@
-require "json"
+require 'json'
 require 'logger'
-require "ostruct"
-require "sinatra/base"
-require "util/validation_utils"
-require "service/shorten_service"
+require 'ostruct'
+require 'sinatra/base'
+require 'util/validation_utils'
+require 'service/shorten_service'
 
 class Application < Sinatra::Base
 

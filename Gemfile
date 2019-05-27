@@ -7,4 +7,5 @@ gem "logger", "1.3.0"
 
 group :test do
   gem "minitest", "5.11.3"
+  gem "rack-test", "1.1.0"
 end
