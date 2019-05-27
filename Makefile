@@ -13,3 +13,9 @@ clear-devenv:
 
 redis-devenv:
 	$(DEVENV_INTERACTIVE_REDIS)
+
+update-dependencies:
+	bundle install
+
+run-locally:
+	bundle exec rackup
