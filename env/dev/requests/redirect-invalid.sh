@@ -1,0 +1,1 @@
+curl -v -X GET localhost:9292/invalid
