@@ -5,7 +5,7 @@ class CustomExceptionHandler < StandardError
   end
 
   def to_json
-    JSON.dump({"error": @msg})
+    JSON.dump({"status": "failure", "error": @msg})
   end
 end
 

@@ -29,7 +29,7 @@ class Application < Sinatra::Base
     begin
       parsed_body = JSON.parse(request.body.read, object_class: OpenStruct)
       @validation_utils.validate_shorten_request parsed_body
-      @shorten_service.shorten parsed_body
+      response = @shorten_service.shorten parsed_body
     rescue InvalidRequestException => e
       LOGGER.info("InvalidRequestException error produced :: errorMessage[#{$!}] stackTrace[#{$@}]")
       halt 400, e.to_json
@@ -40,6 +40,8 @@ class Application < Sinatra::Base
       LOGGER.error("Generic error produced :: errorMessage[#{$!}] stackTrace[#{$@}]")
       halt 500, JSON.dump({"error": "Internal error"})
     end
+
+    response.to_json
   end
 end
 

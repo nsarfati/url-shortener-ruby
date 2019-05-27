@@ -1,6 +1,7 @@
 require 'securerandom'
 require 'config/app_config'
 require 'dao/shorten_dao'
+require 'response/shortened_response'
 require 'exception/duplicated_key_exception'
 
 class ShortenService
@@ -25,5 +26,7 @@ class ShortenService
     if not status
       raise DuplicatedKeyException
     end
+
+    ShortenedResponse.new(random_key)
   end
 end
