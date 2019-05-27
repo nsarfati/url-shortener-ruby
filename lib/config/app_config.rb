@@ -1,9 +1,12 @@
 require 'yaml'
 
 class AppConfig
-  @@parsed_body = YAML.load(File.open(ENV["CONFIG_DIR"] + 'config.yml').read)
 
-  def self.parsed_body
-    @@parsed_body
+  def initialize()
+    @parsed_body = YAML.load(File.open(ENV["CONFIG_DIR"] + 'config.yml').read)
+  end
+
+  def get_config
+    @parsed_body
   end
 end

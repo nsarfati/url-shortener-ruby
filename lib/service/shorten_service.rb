@@ -10,7 +10,7 @@ class ShortenService
   RANDOM_KEY_LENGTH = 5
   MAX_RETRY_TIMES = 5
 
-  def initialize(shorten_dao = ShortenDao.new(AppConfig.parsed_body))
+  def initialize(shorten_dao = ShortenDao.new(AppConfig.new.get_config))
     @shorten_dao = shorten_dao
   end
 
