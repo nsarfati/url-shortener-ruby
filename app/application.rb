@@ -4,7 +4,6 @@ require "ostruct"
 require "sinatra/base"
 require "util/validation_utils"
 require "service/shorten_service"
-require "example"
 
 class Application < Sinatra::Base
 
@@ -17,12 +16,18 @@ class Application < Sinatra::Base
     @validation_utils = validation_utils
   end
 
-  set :views, File.join(settings.root, "/views")
+  get "/:key" do
+    begin
+      redirect_to = @shorten_service.retrieve_full_url params[:key]
+    rescue KeyNotFoundException => e
+      LOGGER.error("KeyNotFoundException error produced :: errorMessage[#{$!}] stackTrace[#{$@}]")
+      redirect_to = "https://properati.com/"
+    rescue => e
+      LOGGER.error("Generic error produced :: errorMessage[#{$!}] stackTrace[#{$@}]")
+      redirect_to = "https://properati.com/"
+    end
 
-  get "/" do
-    erb :index, locals: {
-        message: Example.new.message
-    }
+    redirect to(redirect_to), 301
   end
 
   post "/" do

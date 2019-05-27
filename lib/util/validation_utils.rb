@@ -6,4 +6,10 @@ class ValidationUtils
       raise InvalidRequestException
     end
   end
+
+  def validate_redirect_key(key)
+    if key.nil? or key.strip.empty?
+      raise InvalidRequestException
+    end
+  end
 end

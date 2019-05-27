@@ -11,4 +11,8 @@ class ShortenDao
   def store_key(key, value)
     @redis.set(key, value, {"ex": A_WEEK, "nx": true})
   end
+
+  def retrieve_key(key)
+    @redis.get(key)
+  end
 end

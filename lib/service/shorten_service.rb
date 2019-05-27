@@ -3,6 +3,7 @@ require 'config/app_config'
 require 'dao/shorten_dao'
 require 'response/shortened_response'
 require 'exception/duplicated_key_exception'
+require 'exception/key_not_found_exception'
 
 class ShortenService
 
@@ -28,5 +29,15 @@ class ShortenService
     end
 
     ShortenedResponse.new(random_key)
+  end
+
+  def retrieve_full_url(key)
+    full_url = @shorten_dao.retrieve_key(key)
+
+    if full_url.nil?
+      raise KeyNotFoundException
+    end
+
+    full_url
   end
 end
