@@ -18,4 +18,4 @@ update-dependencies:
 	bundle install
 
 run-locally:
-	bundle exec rackup
+	CONFIG_DIR=env/dev/ bundle exec rackup

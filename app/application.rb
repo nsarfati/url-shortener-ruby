@@ -2,7 +2,7 @@ require 'json'
 require 'logger'
 require 'ostruct'
 require 'sinatra/base'
-require 'util/validation_utils'
+require 'util/validation_util'
 require 'service/shorten_service'
 
 class Application < Sinatra::Base
@@ -10,7 +10,7 @@ class Application < Sinatra::Base
   LOGGER = Logger.new(STDOUT)
 
   def initialize(app = nil, shorten_service = ShortenService.new,
-                 validation_utils = ValidationUtils.new)
+                 validation_utils = ValidationUtil.new)
     super(app)
     @shorten_service = shorten_service
     @validation_utils = validation_utils
